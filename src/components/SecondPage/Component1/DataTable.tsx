@@ -11,8 +11,7 @@ interface DataRow {
 const DataTable: React.FC = () => {
   const [data, setData] = useState<DataRow[]>([]);
 
-  useEffect(() => {
-    // Replace this URL with the actual API endpoint you want to fetch data from
+  useEffect(() => {    
     const apiUrl = 'https://jsonplaceholder.typicode.com/posts';
 
     axios
@@ -35,8 +34,7 @@ const DataTable: React.FC = () => {
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
         rows={data}
-        columns={columns}
-        pageSize={5}
+        columns={columns}        
         rowsPerPageOptions={[5, 10, 20]}
         checkboxSelection={false}
         disableSelectionOnClick
