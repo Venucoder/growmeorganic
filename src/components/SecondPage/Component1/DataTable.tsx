@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import Box from '@mui/material/Box';
+import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 
 interface DataRow {
   id: number;
@@ -8,7 +9,7 @@ interface DataRow {
   body: string;
 }
 
-const DataTable: React.FC = () => {
+export default function DataGridDemo() {
   const [data, setData] = useState<DataRow[]>([]);
 
   useEffect(() => {    
@@ -25,22 +26,20 @@ const DataTable: React.FC = () => {
   }, []);
 
   const columns: GridColDef[] = [
-    { field: 'id', headerName: 'ID', width: 100 },
+    { field: 'id', headerName: 'ID', width: 90 },
     { field: 'title', headerName: 'Title', flex: 1 },
     { field: 'body', headerName: 'Body', flex: 1 },
   ];
 
   return (
-    <div style={{ height: 400, width: '100%' }}>
+    <Box sx={{ height: 400, width: '100%' }}>
       <DataGrid
         rows={data}
-        columns={columns}        
-        rowsPerPageOptions={[5, 10, 20]}
-        checkboxSelection={false}
-        disableSelectionOnClick
+        columns={columns}
+        pageSize={5}
+        checkboxSelection: false
+        disableRowSelectionOnClick: false
       />
-    </div>
+    </Box>
   );
-};
-
-export default DataTable;
+}
